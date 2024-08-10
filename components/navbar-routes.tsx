@@ -53,7 +53,7 @@ export const NavbarRoutes = () => {
         ) : null}
         {isAdminUser && (
           <Button size="sm" variant="ghost" className="bg-[#8e24aa] text-white hover:bg-[#7b1fa2]" onClick={handleAdminClick}>
-            Panel de Administrador
+            Panel de Administración
           </Button>
         )}
         <UserButton afterSignOutUrl="/" />
