@@ -12,7 +12,6 @@ interface CourseEnrollButtonProps {
   courseId: string;
 }
 
-
 export const CourseEnrollButton = ({
   price,
   courseId,
@@ -23,27 +22,24 @@ export const CourseEnrollButton = ({
     try {
       setIsLoading(true);
 
-      const response = await axios.post(`/api/courses/${courseId}/checkout`)
+      const response = await axios.post(`/api/courses/${courseId}/checkout`);
 
       window.location.assign(response.data.url);
     } catch {
-      toast.error("Algo salio mal, intenta de nuevo ");
+      toast.error("Algo salió mal, intenta de nuevo.");
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Button
       onClick={onClick}
       disabled={isLoading}
       size="sm"
-      className="w-full md:w-auto"
+      className="w-full md:w-auto bg-[#0A8ECD] hover:bg-[#086a99] text-white"
     >
-      Inscribete por {formatPrice(price)}
+      Inscríbete por {formatPrice(price)}
     </Button>
-    
-  )
-}
-
-
+  );
+};

@@ -17,7 +17,7 @@ const CourseLayout = async ({
   const { userId } = auth();
 
   if (!userId) {
-    return redirect("/")
+    return redirect("/");
   }
 
   const course = await db.course.findUnique({
@@ -33,12 +33,12 @@ const CourseLayout = async ({
           userProgress: {
             where: {
               userId,
-            }
-          }
+            },
+          },
         },
         orderBy: {
-          position: "asc"
-        }
+          position: "asc",
+        },
       },
     },
   });
@@ -50,24 +50,18 @@ const CourseLayout = async ({
   const progressCount = await getProgress(userId, course.id);
 
   return (
-    <div className="h-full">
-      <div className="h-[80px] md:pl-80 fixed inset-y-0 w-full z-50">
-        <CourseNavbar
-          course={course}
-          progressCount={progressCount}
-        />
+    <div className="h-full bg-[#13161C] text-white">
+      <div className="h-[80px] md:pl-80 fixed inset-y-0 w-full z-50 bg-[#13161C]">
+        <CourseNavbar course={course} progressCount={progressCount} />
       </div>
-      <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">
-        <CourseSidebar
-          course={course}
-          progressCount={progressCount}
-        />
+      <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50 bg-[#13161C]">
+        <CourseSidebar course={course} progressCount={progressCount} />
       </div>
-      <main className="md:pl-80 pt-[80px] h-full">
+      <main className="md:pl-80 pt-[80px] h-full bg-[#13161C]">
         {children}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default CourseLayout
+export default CourseLayout;

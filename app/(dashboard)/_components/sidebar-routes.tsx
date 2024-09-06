@@ -1,20 +1,32 @@
 "use client";
 
-import { BarChart, Compass, Layout, List } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { SidebarItem } from "./sidebar-item";
 
+
+import { BarChart, Compass, Layout, List, MessageSquare } from "lucide-react"; // Asegúrate de importar el ícono correcto
+
 const guestRoutes = [
   {
     icon: Layout,
-    label: "Tablero",
+    label: "Mi Progreso",
     href: "/",
   },
   {
     icon: Compass,
-    label: "Explorar",
+    label: "Cursos",
     href: "/search",
+  },
+  {
+    icon: List,
+    label: "Tutores",
+    href: "/tutors",
+  },
+  {
+    icon: MessageSquare, // Cambiar a un ícono de chat compatible
+    label: "Chat EVA", // Nuevo ítem en el sidebar
+    href: "/chat", // Ruta a la nueva página del chat
   },
 ];
 
@@ -39,7 +51,7 @@ export const SidebarRoutes = () => {
   const routes = isTeacherPage ? teacherRoutes : guestRoutes;
 
   return (
-    <div className="flex flex-col w-full h-screen bg-gradient-to-b from-white via-blue-500 to-purple-600 p-4">
+    <div className="flex flex-col w-full h-screen bg-[#13161C] p-4">
       {routes.map((route) => (
         <SidebarItem
           key={route.href}

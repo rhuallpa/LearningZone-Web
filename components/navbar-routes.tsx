@@ -39,20 +39,20 @@ export const NavbarRoutes = () => {
       <div className="flex gap-x-2 ml-auto">
         {isTeacherPage || isCoursePage || isAdminPage1 ? (
           <Link href="/">
-            <Button size="sm" variant="ghost" className="bg-[#8e24aa] text-white hover:bg-[#7b1fa2]">
+            <Button size="sm" variant="ghost" className="bg-[#3417AA] text-white hover:bg-[#291288] border border-white">
               <LogOut className="h-4 w-4 mr-2" />
               Salir
             </Button>
           </Link>
         ) : isAdminUser || isTeacherUser ? (
           <Link href="/teacher/courses">
-            <Button size="sm" variant="ghost" className="bg-[#8e24aa] text-white hover:bg-[#7b1fa2]">
+            <Button size="sm" variant="ghost" className="bg-[#3417AA] text-white hover:bg-[#291288] border border-white">
               Panel del Tutor
             </Button>
           </Link>
         ) : null}
         {isAdminUser && (
-          <Button size="sm" variant="ghost" className="bg-[#8e24aa] text-white hover:bg-[#7b1fa2]" onClick={handleAdminClick}>
+          <Button size="sm" variant="ghost" className="bg-[#3417AA] text-white hover:bg-[#291288] border border-white" onClick={handleAdminClick}>
             Panel de Administración
           </Button>
         )}
