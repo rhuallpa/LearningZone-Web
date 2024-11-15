@@ -55,39 +55,38 @@ export const ChapterDescriptionForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Capitulo Actualizado");
+      toast.success("Capítulo actualizado");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
-        Descripcion del Capitulo
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-6 border bg-gray-900 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between text-gray-200">
+        Descripción del Capítulo
+        <Button onClick={toggleEdit} variant="ghost" className="text-gray-200">
           {isEditing ? (
             <>Cancelar</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Editar descripcion
+              Editar descripción
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
         <div className={cn(
-          "text-sm mt-2",
-          !initialData.description && "text-slate-500 italic"
+          "text-sm mt-2 text-gray-300",
+          !initialData.description && "text-gray-500 italic"
         )}>
-          {!initialData.description && "No hay ninguna descripcion"}
-          {initialData.description && (
-            <Preview
-              value={initialData.description}
-            />
+          {initialData.description ? (
+            <Preview value={initialData.description} />
+          ) : (
+            "No hay ninguna descripción"
           )}
         </div>
       )}
@@ -103,9 +102,9 @@ export const ChapterDescriptionForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Editor
-                      {...field}
-                    />
+                    <div className="bg-gray-800 text-gray-500 p-2 rounded-md">
+                      <Editor {...field} />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,6 +114,7 @@ export const ChapterDescriptionForm = ({
               <Button
                 disabled={!isValid || isSubmitting}
                 type="submit"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
               >
                 Guardar
               </Button>
@@ -123,5 +123,5 @@ export const ChapterDescriptionForm = ({
         </Form>
       )}
     </div>
-  )
+  );
 }

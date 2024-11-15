@@ -58,7 +58,7 @@ const CreatePage = () => {
         <h1 className="text-2xl">
           Nombra tu curso
         </h1>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-slate-500">
           ¿Como te gustaria llamar a tu curso?, No te preocupes puedes cambiar esto mas tarde.
         </p>
         <Form {...form}>
@@ -75,11 +75,13 @@ const CreatePage = () => {
                     Titulo del Curso
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="Ejemplo: 'Base de datos 1C24'"
-                      {...field}
-                    />
+                  <Input
+                    className="text-white bg-gray-800" // Texto blanco y fondo gris oscuro para mejor contraste
+                    disabled={isSubmitting}
+                    placeholder="Ejemplo: 'Base de datos 1C24'"
+                    {...field}
+                  />
+                  
                   </FormControl>
                   <FormDescription>
                     ¿Que enseñaras en este Curso?

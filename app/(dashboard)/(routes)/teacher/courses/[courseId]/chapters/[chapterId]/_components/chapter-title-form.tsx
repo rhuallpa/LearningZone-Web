@@ -52,31 +52,31 @@ export const ChapterTitleForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Capitulo actualizado");
+      toast.success("Capítulo actualizado");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
-        Titulo del capitulo
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-6 border bg-gray-900 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between text-gray-100">
+        Título del capítulo
+        <Button onClick={toggleEdit} variant="ghost" className="text-gray-100">
           {isEditing ? (
             <>Cancelar</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Editar el titulo
+              Editar el título
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
-        <p className="text-sm mt-2">
+        <p className="text-sm mt-2 text-gray-300">
           {initialData.title}
         </p>
       )}
@@ -94,8 +94,9 @@ export const ChapterTitleForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="Ejemplo: 'Introduccion al curso'"
+                      placeholder="Ejemplo: 'Introducción al curso'"
                       {...field}
+                      className="bg-gray-800 text-white placeholder-gray-500"
                     />
                   </FormControl>
                   <FormMessage />
@@ -106,6 +107,7 @@ export const ChapterTitleForm = ({
               <Button
                 disabled={!isValid || isSubmitting}
                 type="submit"
+                className="w-full bg-gradient-to-r from-purple-600 via-blue-500 to-purple-700 hover:from-purple-700 hover:via-blue-600 hover:to-purple-800 text-white"
               >
                 Guardar
               </Button>

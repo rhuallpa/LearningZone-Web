@@ -39,7 +39,7 @@ export const AttachmentForm = ({
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     }
   };
 
@@ -50,21 +50,20 @@ export const AttachmentForm = ({
       toast.success("Archivo eliminado");
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo");
+      toast.error("Algo salió mal, intenta de nuevo");
     } finally {
       setDeletingId(null);
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-[#2B2E3A] rounded-md p-4 text-white">
       <div className="font-medium flex items-center justify-between">
         Anexos del curso
-        <Button onClick={toggleEdit} variant="ghost">
-          {isEditing && (
+        <Button onClick={toggleEdit} variant="ghost" className="text-white">
+          {isEditing ? (
             <>Cancelar</>
-          )}
-          {!isEditing && (
+          ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
               Agregar un archivo
@@ -75,8 +74,8 @@ export const AttachmentForm = ({
       {!isEditing && (
         <>
           {initialData.attachments.length === 0 && (
-            <p className="text-sm mt-2 text-slate-500 italic">
-              Aun no hay archivos adjuntos
+            <p className="text-sm mt-2 text-slate-400 italic">
+              Aún no hay archivos adjuntos
             </p>
           )}
           {initialData.attachments.length > 0 && (
@@ -84,23 +83,21 @@ export const AttachmentForm = ({
               {initialData.attachments.map((attachment) => (
                 <div
                   key={attachment.id}
-                  className="flex items-center p-3 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md"
+                  className="flex items-center p-3 w-full bg-[#1E2A38] border border-[#3B82F6] text-white rounded-md"
                 >
-                  <File className="h-4 w-4 mr-2 flex-shrink-0" />
-                  <p className="text-xs line-clamp-1">
+                  <File className="h-4 w-4 mr-2 flex-shrink-0 text-sky-400" />
+                  <p className="text-xs line-clamp-1 text-white">
                     {attachment.name}
                   </p>
                   {deletingId === attachment.id && (
-                    <div>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    </div>
+                    <Loader2 className="h-4 w-4 animate-spin text-white" />
                   )}
                   {deletingId !== attachment.id && (
                     <button
                       onClick={() => onDelete(attachment.id)}
                       className="ml-auto hover:opacity-75 transition"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="h-4 w-4 text-white" />
                     </button>
                   )}
                 </div>
@@ -119,8 +116,8 @@ export const AttachmentForm = ({
               }
             }}
           />
-          <div className="text-xs text-muted-foreground mt-4">
-            Agregue todo lo que los estudiantes puedan necesitar para completar el curso
+          <div className="text-xs text-slate-400 mt-4">
+            Agrega todo lo que los estudiantes puedan necesitar para completar el curso
           </div>
         </div>
       )}

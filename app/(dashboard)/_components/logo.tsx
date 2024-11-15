@@ -2,16 +2,16 @@ import Image from "next/image";
 
 export const Logo = () => {
   return (
-    <div className="bg-[#13161C] flex justify-center items-center h-15 w-full"> {/* Ajuste de altura */}
-      <div className="bg-[#13161C] flex justify-center items-center p-0 m-0">
+    <div className="bg-gradient-to-r from-[#0D0E25] via-[#0D0E25] to-[#0D0E25] flex justify-center items-center h-15 w-full">
+      <div className="flex justify-center items-center p-0 m-0">
         <Image
           alt="Learning Zone Logo"
           src="/logo5.svg"
-          width={150}  // Ajusta el ancho del logo
-          height={150} // Ajusta la altura del logo
+          width={170}  // Ajusta el ancho del logo
+          height={170} // Ajusta la altura del logo
           className="object-contain"
         />
       </div>
     </div>
   );
-}
+};

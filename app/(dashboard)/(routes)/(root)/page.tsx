@@ -14,10 +14,24 @@ export default async function Dashboard() {
     return redirect("/");
   }
 
-  const { completedCourses, coursesInProgress } = await getDashboardCourses(userId);
+  const {
+    completedCourses,
+    coursesInProgress
+  } = await getDashboardCourses(userId);
 
   return (
-    <div className="min-h-screen p-6 space-y-4 bg-[#13161C] text-white">
+    <div className="p-6 space-y-4 bg-gradient-to-r from-[#060C26] via-[#1C1E3A] to-[#0a0631] min-h-screen text-white">
+      {/* Título de Bienvenida */}
+      <div className="flex justify-center items-center mb-6">
+        <h1 className="text-3xl font-bold text-center flex items-center">
+          🎓 Bienvenido a
+          <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#8A2BE2] via-[#3B82F6] to-[#8A2BE2]">
+            LearningZone
+          </span>
+        </h1>
+      </div>
+
+      {/* Tarjetas de Información */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <InfoCard
           icon={Clock}
@@ -31,7 +45,11 @@ export default async function Dashboard() {
           variant="success"
         />
       </div>
-      <CoursesList items={[...coursesInProgress, ...completedCourses]} />
+
+      {/* Lista de Cursos */}
+      <CoursesList
+        items={[...coursesInProgress, ...completedCourses]}
+      />
     </div>
   );
 }

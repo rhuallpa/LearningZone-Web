@@ -5,11 +5,11 @@ interface CourseProgressProps {
   value: number;
   variant?: "default" | "success";
   size?: "default" | "sm";
-};
+}
 
 const colorByVariant = {
-  default: "bg-sky-700",
-  success: "bg-emerald-700",
+  default: "bg-blue-300", // Un azul más claro para mayor visibilidad
+  success: "bg-blue-300",
 }
 
 const sizeByVariant = {
@@ -19,24 +19,23 @@ const sizeByVariant = {
 
 export const CourseProgress = ({
   value,
-  variant = "default", // Provide default values
-  size = "default", // Provide default values
+  variant = "default",
+  size = "default",
 }: CourseProgressProps) => {
   return (
     <div>
       <Progress
         className={cn(
-          "h-2",
-          colorByVariant[variant] // Apply variant color
+          "h-2 shadow-md shadow-blue-500", // Sombra azul para resaltar la barra de progreso
+          colorByVariant[variant] // Aplica el color claro para la barra de progreso
         )}
         value={value}
       />
       <p className={cn(
-        "font-medium mt-2",
-        colorByVariant, // Apply variant color
-        sizeByVariant[size] // Apply size
+        "font-medium mt-2 text-gray-200", // Texto claro para mayor visibilidad
+        sizeByVariant[size] // Tamaño del texto según la variante
       )}>
-        {Math.round(value)}% Complete
+        {Math.round(value)}% Completado
       </p>
     </div>
   );

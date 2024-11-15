@@ -76,16 +76,16 @@ const CourseIdPage = async ({
     <>
       {!course.isPublished && (
         <Banner
-          label="Este curso no esta publicado no sera visible para los estudiantes"
+          label="Este curso no está publicado y no será visible para los estudiantes"
         />
       )}
-      <div className="p-6">
+      <div className="p-6 bg-[#131A2E] min-h-screen text-white">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="text-2xl font-medium">
-              Configuracion del curso
-            </h1>
-            <span className="text-sm text-slate-700">
+            <h5 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500">
+              Configuración del curso
+            </h5>
+            <span className="text-sm text-gray-400">
               Complete todos los campos {completionText}
             </span>
           </div>
@@ -95,11 +95,11 @@ const CourseIdPage = async ({
             isPublished={course.isPublished}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          <div className="bg-[#1B1E3A] p-6 rounded-lg shadow-lg">
             <div className="flex items-center gap-x-2">
               <IconBadge icon={LayoutDashboard} />
-              <h2 className="text-xl">
+              <h2 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
                 Personaliza tu curso
               </h2>
             </div>
@@ -125,11 +125,11 @@ const CourseIdPage = async ({
             />
           </div>
           <div className="space-y-6">
-            <div>
+            <div className="bg-[#1B1E3A] p-6 rounded-lg shadow-lg">
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={ListChecks} />
-                <h2 className="text-xl">
-                  Capitulos del curso
+                <h2 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                  Capítulos del curso
                 </h2>
               </div>
               <ChaptersForm
@@ -137,10 +137,10 @@ const CourseIdPage = async ({
                 courseId={course.id}
               />
             </div>
-            <div>
+            <div className="bg-[#1B1E3A] p-6 rounded-lg shadow-lg">
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={CircleDollarSign} />
-                <h2 className="text-xl">
+                <h2 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
                   Vende tus cursos
                 </h2>
               </div>
@@ -149,10 +149,10 @@ const CourseIdPage = async ({
                 courseId={course.id}
               />
             </div>
-            <div>
+            <div className="bg-[#1B1E3A] p-6 rounded-lg shadow-lg">
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={File} />
-                <h2 className="text-xl">
+                <h2 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
                   Recursos y archivos adjuntos
                 </h2>
               </div>

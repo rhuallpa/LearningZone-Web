@@ -28,7 +28,7 @@ interface DescriptionFormProps {
 
 const formSchema = z.object({
   description: z.string().min(1, {
-    message: "Description is required",
+    message: "Descripción es necesaria",
   }),
 });
 
@@ -58,31 +58,31 @@ export const DescriptionForm = ({
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo");
+      toast.error("Algo salió mal, intenta de nuevo");
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
-        Descripcion del curso
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-6 border bg-[#2B2E3A] rounded-md p-4">
+      <div className="font-medium flex items-center justify-between text-white">
+        Descripción del curso
+        <Button onClick={toggleEdit} variant="ghost" className="text-white">
           {isEditing ? (
             <>Cancelar</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Editar la descripcion
+              Editar la descripción
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
         <p className={cn(
-          "text-sm mt-2",
+          "text-sm mt-2 text-gray-300",
           !initialData.description && "text-slate-500 italic"
         )}>
-          {initialData.description || "No hay ninguna descripcion"}
+          {initialData.description || "No hay ninguna descripción"}
         </p>
       )}
       {isEditing && (
@@ -101,6 +101,7 @@ export const DescriptionForm = ({
                       disabled={isSubmitting}
                       placeholder="Ejemplo: 'Este curso es sobre...'"
                       {...field}
+                      className="bg-[#1E222D] text-white placeholder-gray-500"
                     />
                   </FormControl>
                   <FormMessage />
@@ -111,6 +112,7 @@ export const DescriptionForm = ({
               <Button
                 disabled={!isValid || isSubmitting}
                 type="submit"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
               >
                 Guardar
               </Button>

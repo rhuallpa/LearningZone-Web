@@ -19,62 +19,63 @@ const TutoringRequestPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-10">
-      <h3 className="text-3xl font-bold mb-6">Ingresar datos del tutor</h3>
-      <form
-        className="mt-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+    <div className="max-w-2xl mx-auto py-10 bg-gradient-to-r from-[#0D0E25] via-[#0D0E25] to-[#1C1E3A] p-8 rounded-lg shadow-2xl border border-gray-700">
+      <h3 className="text-3xl font-bold mb-6 text-white text-center">Ingresar datos del tutor</h3>
+      <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-300">
             Nombres y Apellidos
           </label>
           <input
             type="text"
-          
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+            className="mt-2 p-3 block w-full border-none bg-[#1E1E2D] text-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
             placeholder="Nombres y Apellidos"
-            {...register("name", { required: true })}
+            {...register("name", { required: "Este campo es requerido." })}
           />
+          {errors.name && <p className="text-red-400 mt-1">{errors.name.message}</p>}
         </div>
-        {errors.name && <p className="text-red-500">Este campo es requerido.</p>}
-        
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Correo del Solicitante a tutor:
+
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-300">
+            Correo del Solicitante a tutor
           </label>
           <input
             type="email"
-            
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+            className="mt-2 p-3 block w-full border-none bg-[#1E1E2D] text-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
             placeholder="Correo del Solicitante a tutor"
-            {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+            {...register("email", {
+              required: "Este campo es requerido.",
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: "Por favor, ingrese un correo electrónico válido."
+              }
+            })}
           />
+          {errors.email && <p className="text-red-400 mt-1">{errors.email.message}</p>}
         </div>
-        {errors.email && <p className="text-red-500">Por favor, ingrese un correo electrónico válido.</p>}
-        
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-300">
             UserID
           </label>
           <input
             type="text"
-            
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+            className="mt-2 p-3 block w-full border-none bg-[#1E1E2D] text-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
             placeholder="UserID"
-            {...register("userId", { required: true })}
+            {...register("userId", { required: "Este campo es requerido." })}
           />
+          {errors.userId && <p className="text-red-400 mt-1">{errors.userId.message}</p>}
         </div>
-        {errors.userId && <p className="text-red-500">Este campo es requerido.</p>}
-        
+
         <button
           type="submit"
-          className="px-4 py-2 bg-black text-white rounded-md shadow-sm"
+          className="w-full px-4 py-3 bg-gradient-to-r from-[#8A2BE2] via-[#3B82F6] to-[#8A2BE2] text-white font-semibold rounded-lg shadow-md hover:from-[#6B21A8] hover:via-[#2563EB] hover:to-[#6B21A8] transition-all"
         >
-          Confirmar Añadir Tutor
+        Añadir Tutor
         </button>
       </form>
-      {status && <p className="mt-4">{status}</p>}
+
+      {status && <p className="mt-6 text-green-400 font-semibold text-center">{status}</p>}
     </div>
   );
 };

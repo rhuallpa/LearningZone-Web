@@ -19,14 +19,13 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { Combobox } from "@/components/ui/combobox";
 
 interface CategoryFormProps {
   initialData: Course;
   courseId: string;
   options: { label: string; value: string; }[];
-};
+}
 
 const formSchema = z.object({
   categoryId: z.string().min(1),
@@ -59,23 +58,23 @@ export const CategoryForm = ({
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo");
+      toast.error("Algo salió mal, intenta de nuevo");
     }
-  }
+  };
 
   const selectedOption = options.find((option) => option.value === initialData.categoryId);
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-[#2B2E3A] rounded-md p-4 text-white">
       <div className="font-medium flex items-center justify-between">
-        Categoria del curso
-        <Button onClick={toggleEdit} variant="ghost">
+        Categoría del curso
+        <Button onClick={toggleEdit} variant="ghost" className="text-white">
           {isEditing ? (
             <>Cancelar</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Editar categoria
+              Editar categoría
             </>
           )}
         </Button>
@@ -83,9 +82,9 @@ export const CategoryForm = ({
       {!isEditing && (
         <p className={cn(
           "text-sm mt-2",
-          !initialData.categoryId && "text-slate-500 italic"
+          !initialData.categoryId && "text-slate-400 italic"
         )}>
-          {selectedOption?.label || "Ninguna categoria seleccionada"}
+          {selectedOption?.label || "Ninguna categoría seleccionada"}
         </p>
       )}
       {isEditing && (
@@ -104,7 +103,6 @@ export const CategoryForm = ({
                       options={options}
                       {...field}
                     />
-
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -122,5 +120,5 @@ export const CategoryForm = ({
         </Form>
       )}
     </div>
-  )
-}
+  );
+};

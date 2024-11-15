@@ -13,19 +13,19 @@ import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 
 interface ImageFormProps {
-  initialData: Course
+  initialData: Course;
   courseId: string;
-};
+}
 
 const formSchema = z.object({
   imageUrl: z.string().min(1, {
-    message: "Image is required",
+    message: "Se requiere una imagen",
   }),
 });
 
 export const ImageForm = ({
   initialData,
-  courseId
+  courseId,
 }: ImageFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -40,18 +40,16 @@ export const ImageForm = ({
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo");
+      toast.error("Algo salió mal, intenta de nuevo");
     }
-  }
+  };
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-[#2B2E3A] rounded-md p-4 text-white">
       <div className="font-medium flex items-center justify-between">
         Imagen del curso
-        <Button onClick={toggleEdit} variant="ghost">
-          {isEditing && (
-            <>Cancelar</>
-          )}
+        <Button onClick={toggleEdit} variant="ghost" className="text-white">
+          {isEditing && <>Cancelar</>}
           {!isEditing && !initialData.imageUrl && (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
@@ -68,8 +66,8 @@ export const ImageForm = ({
       </div>
       {!isEditing && (
         !initialData.imageUrl ? (
-          <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
-            <ImageIcon className="h-10 w-10 text-slate-500" />
+          <div className="flex items-center justify-center h-60 bg-[#1E222D] rounded-md">
+            <ImageIcon className="h-10 w-10 text-slate-400" />
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
@@ -92,11 +90,11 @@ export const ImageForm = ({
               }
             }}
           />
-          <div className="text-xs text-muted-foreground mt-4">
-            16:9 relacion de aspecto recomendada
+          <div className="text-xs text-slate-400 mt-4">
+            Relación de aspecto recomendada: 16:9
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};

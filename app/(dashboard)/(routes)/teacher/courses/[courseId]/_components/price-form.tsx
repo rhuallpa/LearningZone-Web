@@ -57,15 +57,15 @@ export const PriceForm = ({
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo");
+      toast.error("Algo salió mal, intenta de nuevo");
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-[#2B2E3A] rounded-md p-4 text-white">
       <div className="font-medium flex items-center justify-between">
         Precio del curso
-        <Button onClick={toggleEdit} variant="ghost">
+        <Button onClick={toggleEdit} variant="ghost" className="text-white">
           {isEditing ? (
             <>Cancelar</>
           ) : (
@@ -79,7 +79,7 @@ export const PriceForm = ({
       {!isEditing && (
         <p className={cn(
           "text-sm mt-2",
-          !initialData.price && "text-slate-500 italic"
+          !initialData.price && "text-slate-400 italic"
         )}>
           {initialData.price
             ? formatPrice(initialData.price)
@@ -105,6 +105,7 @@ export const PriceForm = ({
                       disabled={isSubmitting}
                       placeholder="Establece un precio para tu curso"
                       {...field}
+                      className="bg-[#1E2A38] text-white border border-[#3B82F6]" // Fondo oscuro y texto blanco
                     />
                   </FormControl>
                   <FormMessage />
@@ -115,6 +116,7 @@ export const PriceForm = ({
               <Button
                 disabled={!isValid || isSubmitting}
                 type="submit"
+                className="bg-gradient-to-r from-[#8A2BE2] via-[#3B82F6] to-[#8A2BE2] hover:from-[#6B21A8] hover:via-[#2563EB] hover:to-[#6B21A8] text-white shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
               >
                 Guardar
               </Button>

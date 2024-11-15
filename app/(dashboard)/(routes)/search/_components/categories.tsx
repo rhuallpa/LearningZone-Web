@@ -1,31 +1,42 @@
 "use client";
 
 import { Category } from "@prisma/client";
-
-
-
-
-import { FcBriefcase, FcGlobe, FcVideoFile, FcDataProtection, FcEngineering, FcInfo, FcCollaboration, FcMultipleDevices, FcPrivacy, FcFilm, FcStatistics, FcSupport, FcConferenceCall} from "react-icons/fc";
+import { 
+  FcBriefcase, 
+  FcGlobe, 
+  FcVideoFile, 
+  FcDataProtection, 
+  FcEngineering, 
+  FcInfo, 
+  FcCollaboration, 
+  FcMultipleDevices, 
+  FcPrivacy, 
+  FcFilm, 
+  FcStatistics, 
+  FcSupport, 
+  FcConferenceCall 
+} from "react-icons/fc";
 
 import { IconType } from "react-icons";
-
 import { CategoryItem } from "./category-item";
 
 interface CategoriesProps {
   items: Category[];
 }
 
-
+// Mapa de categorías a íconos
 const iconMap: Record<Category["name"], IconType> = {
-  "Administración de Redes y Comunicaciones": FcGlobe,
-  "Modelado y Animación Digital": FcFilm,
-  "Diseño y Desarrollo de Simuladores y Videojuegos": FcEngineering,
-  "Big Data y Ciencia de Datos": FcDataProtection,
-  "Diseño y Desarrollo de Software": FcMultipleDevices,
-  "Informacion de TD": FcInfo,
-  "Tutorias Personalizadas": FcConferenceCall,
+  "Programación": FcMultipleDevices,
+  "Desarrollo de Aplicaciones Web": FcGlobe,
+  "Desarrollo de Aplicaciones Móviles": FcMultipleDevices,
+  "Bases de Datos": FcDataProtection,
+  "Inteligencia Artificial y Machine Learning": FcStatistics,
+  "Ciberseguridad": FcPrivacy,
+  "DevOps y Metodologías Ágiles": FcEngineering,
+  "Desarrollo de Videojuegos": FcFilm,
+  "Software Testing y QA": FcSupport,
+  "Tutorías Personalizadas": FcConferenceCall,
 };
-
 
 export const Categories = ({
   items,
@@ -41,5 +52,5 @@ export const Categories = ({
         />
       ))}
     </div>
-  )
-}
+  );
+};

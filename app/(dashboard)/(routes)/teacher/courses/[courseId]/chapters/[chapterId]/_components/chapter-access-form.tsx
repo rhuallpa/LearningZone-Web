@@ -20,8 +20,6 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Editor } from "@/components/editor";
-import { Preview } from "@/components/preview";
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface ChapterAccessFormProps {
@@ -57,19 +55,19 @@ export const ChapterAccessForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Capitulo actualizado");
+      toast.success("Capítulo actualizado");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
-        Acceso al capitulo
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-6 border bg-gray-900 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between text-gray-100">
+        Acceso al capítulo
+        <Button onClick={toggleEdit} variant="ghost" className="text-gray-100">
           {isEditing ? (
             <>Cancelar</>
           ) : (
@@ -82,13 +80,13 @@ export const ChapterAccessForm = ({
       </div>
       {!isEditing && (
         <p className={cn(
-          "text-sm mt-2",
-          !initialData.isFree && "text-slate-500 italic"
+          "text-sm mt-2 text-gray-300",
+          !initialData.isFree && "text-gray-500 italic"
         )}>
           {initialData.isFree ? (
-            <>La vista previa de este capitulo es gratuita.</>
+            <>La vista previa de este capítulo es gratuita.</>
           ) : (
-            <>Este capitulo no es gratuito.</>
+            <>Este capítulo no es gratuito.</>
           )}
         </p>
       )}
@@ -102,16 +100,17 @@ export const ChapterAccessForm = ({
               control={form.control}
               name="isFree"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 bg-gray-800 text-white">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="text-white"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormDescription>
-                      Marque esta casilla si desea que este capitulo sea gratuito para obtener una vista previa
+                    <FormDescription className="text-gray-300">
+                      Marque esta casilla si desea que este capítulo sea gratuito para obtener una vista previa
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -121,6 +120,7 @@ export const ChapterAccessForm = ({
               <Button
                 disabled={!isValid || isSubmitting}
                 type="submit"
+                className="w-full bg-gradient-to-r from-purple-600 via-blue-500 to-purple-700 hover:from-purple-700 hover:via-blue-600 hover:to-purple-800 text-white"
               >
                 Guardar
               </Button>
@@ -131,4 +131,3 @@ export const ChapterAccessForm = ({
     </div>
   )
 }
-

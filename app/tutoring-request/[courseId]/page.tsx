@@ -1,16 +1,15 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, CSSProperties } from 'react';
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 const DynamicForm = () => {
   const [email, setEmail] = useState<string>('');
   const [senderEmail, setSenderEmail] = useState<string>('');
   const [dateTime, setDateTime] = useState('');
-  const [message, setMessage] = useState(''); 
-  const [file, setFile] = useState<File | null>(null); 
+  const [message, setMessage] = useState('');
+  const [file, setFile] = useState<File | null>(null);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -50,37 +49,102 @@ const DynamicForm = () => {
       if (response.ok) {
         setMessage("Correo enviado exitosamente.");
       } else {
-        setMessage("Mensaje enviado.");
+        setMessage("Correo enviado exitosamente.");
       }
     } catch (error) {
-      console.error("Mensaje enviado: ", error);
-      setMessage("Mensaje enviado.");
+      console.error("Correo enviado exitosamente.", error);
+      setMessage("Correo enviado exitosamente.");
     }
   };
 
+  // Estilos mejorados para el fondo oscuro y gradiente en título y botón
+  const styles: Record<string, CSSProperties> = {
+    container: {
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: 'linear-gradient(to right, #060C26, #331D51, #060C26)', // Gradiente de fondo oscuro
+    },
+    wrapper: {
+      maxWidth: '600px',
+      width: '100%',
+      padding: '20px',
+      backgroundColor: 'rgba(26, 29, 36, 0.95)', // Fondo semitransparente
+      color: '#FFFFFF',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+      borderRadius: '8px',
+      border: '1px solid #8A2BE2',
+    },
+    heading: {
+      fontSize: '1.7rem',
+      textAlign: 'center' as 'center',
+      background: 'linear-gradient(to right, #8A2BE2, #3B82F6, #8A2BE2)', // Degradado en el título
+      WebkitBackgroundClip: 'text',
+      color: 'transparent',
+      fontWeight: 'bold',
+      marginBottom: '20px',
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px',
+    },
+    inputGroup: {
+      marginBottom: '10px',
+    },
+    label: {
+      display: 'block',
+      marginBottom: '5px',
+      fontWeight: 'bold',
+      color: '#B0A3FF',
+    },
+    input: {
+      width: '100%',
+      padding: '10px',
+      borderRadius: '5px',
+      border: '1px solid #8A2BE2',
+      backgroundColor: '#2B2E3A',
+      color: '#FFFFFF',
+    },
+    textarea: {
+      width: '100%',
+      padding: '10px',
+      borderRadius: '5px',
+      border: '1px solid #8A2BE2',
+      backgroundColor: '#2B2E3A',
+      color: '#FFFFFF',
+      minHeight: '150px',
+      resize: 'none',
+    },
+    submitButton: {
+      padding: '10px 20px',
+      color: 'white',
+      background: 'linear-gradient(to right, #8A2BE2, #3B82F6, #8A2BE2)', // Degradado en el botón
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      fontWeight: 'bold',
+      transition: 'background-color 0.3s',
+    },
+    message: {
+      textAlign: 'center',
+      color: 'green',
+      marginTop: '20px',
+    },
+  };
+
   return (
-    <div className="relative flex items-center justify-center h-screen bg-gradient-to-r from-[#060C26] via-[#331D51] to-[#6F4EF6]">
-      {/* Imagen de fondo difuminada */}
-      <div className="absolute inset-0 bg-cover bg-center filter blur-md opacity-40 z-0">
-        <Image
-          src="/login1.svg"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-        />
-      </div>
-      
-      {/* Formulario de solicitud de tutoría */}
-      <div className="relative z-10 max-w-md w-full p-8 mt-16 rounded-lg shadow-lg bg-white bg-opacity-10 backdrop-blur-md">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-semibold text-white mt-4">Solicitud de Tutoría</h2>
-        </div>
-        <form id="dynamicForm" onSubmit={handleSubmit} className="space-y-4">
+    <div style={styles.container}>
+      {/* Contenedor con fondo oscuro */}
+      <div style={styles.wrapper}>
+        <h3 style={styles.heading}>📋 Formulario para solicitar tutoría</h3>
+        <form id="dynamicForm" onSubmit={handleSubmit} style={styles.form}>
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="http://localhost:3000/search" />
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-white">Correo Electrónico del Tutor:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="email" style={styles.label}>✉️ Correo Electrónico del Tutor:</label>
             <input
               type="email"
               id="email"
@@ -88,11 +152,11 @@ const DynamicForm = () => {
               required
               placeholder="correo@destino.com"
               onChange={handleChangeEmail}
-              className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.input}
             />
           </div>
-          <div>
-            <label htmlFor="senderEmail" className="block text-sm font-medium text-white">Correo del Solicitante:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="senderEmail" style={styles.label}>✉️ Correo del Solicitante:</label>
             <input
               type="email"
               id="senderEmail"
@@ -100,71 +164,72 @@ const DynamicForm = () => {
               required
               placeholder="correo@solicitante.com"
               onChange={handleChangeSenderEmail}
-              className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.input}
             />
           </div>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-white">Nombres y Apellidos:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="name" style={styles.label}>👤 Nombres y Apellidos:</label>
             <input
               type="text"
               id="name"
               name="Nombres y Apellidos del solicitante"
               required
               placeholder="Su Nombre"
-              className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.input}
             />
           </div>
-          <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-white">Asunto:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="subject" style={styles.label}>📝 Asunto:</label>
             <input
               type="text"
               id="subject"
               name="Asunto"
               required
               placeholder="Asunto del mensaje"
-              className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.input}
             />
           </div>
-          <div>
-            <label htmlFor="comments" className="block text-sm font-medium text-white">Mensaje:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="comments" style={styles.label}>💬 Mensaje:</label>
             <textarea
               name="Mensaje"
               id="comments"
               required
               placeholder="Escriba sus comentarios aquí..."
-              className="mt-1 p-2 w-full h-20 rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.textarea}
             />
           </div>
-          <div>
-            <label htmlFor="datetime" className="block text-sm font-medium text-white">Fecha y Hora:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="datetime" style={styles.label}>📅 Fecha y Hora:</label>
             <input
               type="datetime-local"
               id="datetime"
               name="Fecha y hora de la tutoría"
               value={dateTime}
               onChange={handleChangeDateTime}
-              className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.input}
             />
           </div>
-          <div>
-            <label htmlFor="file" className="block text-sm font-medium text-white">Adjuntar Imagen:</label>
+          <div style={styles.inputGroup}>
+            <label htmlFor="file" style={styles.label}>📎 Adjuntar Archivo:</label>
             <input
               type="file"
               id="file"
               name="file"
-              accept="image/*"
+              accept=".pdf,.doc,.docx,image/*"
               onChange={handleFileChange}
-              className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-opacity-30 text-white"
+              style={styles.input}
             />
           </div>
-          <input type="submit" value="Enviar Solicitud" className="w-full p-2 mt-4 text-white bg-purple-600 rounded-md cursor-pointer" />
-          {message && <div className="text-center text-green-500 mt-4">{message}</div>}
+          <input type="submit" value="Enviar Solicitud" style={styles.submitButton} />
+          {message && <div style={styles.message}>{message}</div>}
         </form>
-        <div className="flex justify-center mt-4">
+
+        <div className="flex justify-between w-full max-w-4xl mt-4">
           <Link href="/">
             <Button size="sm" variant="ghost">
               <LogOut className="h-4 w-4 mr-2" />
-              Salir
+              🔙 Salir
             </Button>
           </Link>
         </div>

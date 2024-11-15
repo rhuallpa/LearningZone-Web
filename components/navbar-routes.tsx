@@ -39,20 +39,33 @@ export const NavbarRoutes = () => {
       <div className="flex gap-x-2 ml-auto">
         {isTeacherPage || isCoursePage || isAdminPage1 ? (
           <Link href="/">
-            <Button size="sm" variant="ghost" className="bg-[#3417AA] text-white hover:bg-[#291288] border border-white">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="bg-gradient-to-r from-[#8A2BE2] via-[#3B82F6] to-[#8A2BE2] text-white hover:from-[#6B21A8] hover:via-[#2563EB] hover:to-[#6B21A8] border border-white"
+            >
               <LogOut className="h-4 w-4 mr-2" />
               Salir
             </Button>
           </Link>
         ) : isAdminUser || isTeacherUser ? (
           <Link href="/teacher/courses">
-            <Button size="sm" variant="ghost" className="bg-[#3417AA] text-white hover:bg-[#291288] border border-white">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="bg-gradient-to-r from-[#8A2BE2] via-[#3B82F6] to-[#8A2BE2] text-white hover:from-[#6B21A8] hover:via-[#2563EB] hover:to-[#6B21A8] border border-white"
+            >
               Panel del Tutor
             </Button>
           </Link>
         ) : null}
         {isAdminUser && (
-          <Button size="sm" variant="ghost" className="bg-[#3417AA] text-white hover:bg-[#291288] border border-white" onClick={handleAdminClick}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="bg-gradient-to-r from-[#8A2BE2] via-[#3B82F6] to-[#8A2BE2] text-white hover:from-[#6B21A8] hover:via-[#2563EB] hover:to-[#6B21A8] border border-white"
+            onClick={handleAdminClick}
+          >
             Panel de Administración
           </Button>
         )}

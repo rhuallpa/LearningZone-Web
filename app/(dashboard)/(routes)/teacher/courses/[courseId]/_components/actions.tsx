@@ -40,7 +40,7 @@ export const Actions = ({
 
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     } finally {
       setIsLoading(false);
     }
@@ -52,11 +52,11 @@ export const Actions = ({
 
       await axios.delete(`/api/courses/${courseId}`);
 
-      toast.success("Course deleted");
+      toast.success("Curso eliminado");
       router.refresh();
       router.push(`/teacher/courses`);
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     } finally {
       setIsLoading(false);
     }
@@ -67,13 +67,17 @@ export const Actions = ({
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
-        variant="outline"
         size="sm"
+        className="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-700 hover:from-purple-700 hover:via-blue-600 hover:to-purple-800 text-white"
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? "No Publicar" : "Publicar"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
+        <Button 
+          size="sm" 
+          disabled={isLoading} 
+          className="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-700 hover:from-purple-700 hover:via-blue-600 hover:to-purple-800 text-white"
+        >
           <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>

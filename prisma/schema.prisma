@@ -9,7 +9,6 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-
 model Course {
   id String @id @default(uuid())
   userId String

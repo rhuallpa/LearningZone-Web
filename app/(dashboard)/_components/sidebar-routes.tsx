@@ -1,11 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-
 import { SidebarItem } from "./sidebar-item";
-
-
-import { BarChart, Compass, Layout, List, MessageSquare } from "lucide-react"; // Asegúrate de importar el ícono correcto
+import { BarChart, Compass, Layout, List, MessageSquare } from "lucide-react";
 
 const guestRoutes = [
   {
@@ -24,9 +21,9 @@ const guestRoutes = [
     href: "/tutors",
   },
   {
-    icon: MessageSquare, // Cambiar a un ícono de chat compatible
-    label: "Chat EVA", // Nuevo ítem en el sidebar
-    href: "/chat", // Ruta a la nueva página del chat
+    icon: MessageSquare,
+    label: "Chat EVA",
+    href: "/chatEva",
   },
 ];
 
@@ -41,17 +38,15 @@ const teacherRoutes = [
     label: "Análisis",
     href: "/teacher/analytics",
   },
-]
+];
 
 export const SidebarRoutes = () => {
   const pathname = usePathname();
-
   const isTeacherPage = pathname?.includes("/teacher");
-
   const routes = isTeacherPage ? teacherRoutes : guestRoutes;
 
   return (
-    <div className="flex flex-col w-full h-screen bg-[#13161C] p-4">
+    <div className="flex flex-col w-full h-screen p-4" style={{ background: 'linear-gradient(to right, #0D0E25, #0D0E25, #1C1E3A)' }}>
       {routes.map((route) => (
         <SidebarItem
           key={route.href}
@@ -62,4 +57,4 @@ export const SidebarRoutes = () => {
       ))}
     </div>
   );
-}
+};

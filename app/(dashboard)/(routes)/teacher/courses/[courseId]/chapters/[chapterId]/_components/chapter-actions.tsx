@@ -31,15 +31,15 @@ export const ChapterActions = ({
 
       if (isPublished) {
         await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`);
-        toast.success("Capitulo no publicado");
+        toast.success("Capítulo no publicado");
       } else {
         await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`);
-        toast.success("Capitulo Publicado");
+        toast.success("Capítulo publicado");
       }
 
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     } finally {
       setIsLoading(false);
     }
@@ -51,11 +51,11 @@ export const ChapterActions = ({
 
       await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
 
-      toast.success("Capitulo eliminado");
+      toast.success("Capítulo eliminado");
       router.refresh();
       router.push(`/teacher/courses/${courseId}`);
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     } finally {
       setIsLoading(false);
     }
@@ -66,13 +66,17 @@ export const ChapterActions = ({
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
-        variant="outline"
         size="sm"
+        className="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-700 text-white hover:from-purple-700 hover:via-blue-600 hover:to-purple-800"
       >
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
+        <Button
+          size="sm"
+          disabled={isLoading}
+          className="bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white hover:from-red-700 hover:via-red-600 hover:to-red-800"
+        >
           <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>

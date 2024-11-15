@@ -57,11 +57,11 @@ export const ChaptersForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
-      toast.success("Capitulo creado");
+      toast.success("Capítulo creado");
       toggleCreating();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo ");
+      toast.error("Algo salió mal, intenta de nuevo.");
     }
   }
 
@@ -72,10 +72,10 @@ export const ChaptersForm = ({
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData
       });
-      toast.success("Capitulos reordenados");
+      toast.success("Capítulos reordenados");
       router.refresh();
     } catch {
-      toast.error("Algo salio mal, intente de nuevo");
+      toast.error("Algo salió mal, intenta de nuevo.");
     } finally {
       setIsUpdating(false);
     }
@@ -86,21 +86,21 @@ export const ChaptersForm = ({
   }
 
   return (
-    <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="relative mt-6 border bg-gray-800 rounded-md p-4">
       {isUpdating && (
-        <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
-          <Loader2 className="animate-spin h-6 w-6 text-sky-700" />
+        <div className="absolute h-full w-full bg-gray-900/20 top-0 right-0 rounded-md flex items-center justify-center">
+          <Loader2 className="animate-spin h-6 w-6 text-blue-500" />
         </div>
       )}
-      <div className="font-medium flex items-center justify-between">
-        Capitulos del curso
-        <Button onClick={toggleCreating} variant="ghost">
+      <div className="font-medium flex items-center justify-between text-white">
+        Capítulos del curso
+        <Button onClick={toggleCreating} variant="ghost" className="text-white">
           {isCreating ? (
             <>Cancelar</>
           ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Añadir un capitulo
+              Añadir un capítulo
             </>
           )}
         </Button>
@@ -119,7 +119,8 @@ export const ChaptersForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="Ejemplo: 'Introduccion al curso'"
+                      placeholder="Ejemplo: 'Introducción al curso'"
+                      className="bg-gray-700 text-white"
                       {...field}
                     />
                   </FormControl>
@@ -130,6 +131,7 @@ export const ChaptersForm = ({
             <Button
               disabled={!isValid || isSubmitting}
               type="submit"
+              className="w-full bg-gradient-to-r from-purple-600 via-blue-500 to-purple-700 hover:from-purple-700 hover:via-blue-600 hover:to-purple-800 text-white"
             >
               Crear
             </Button>
@@ -138,10 +140,10 @@ export const ChaptersForm = ({
       )}
       {!isCreating && (
         <div className={cn(
-          "text-sm mt-2",
-          !initialData.chapters.length && "text-slate-500 italic"
+          "text-sm mt-2 text-white",
+          !initialData.chapters.length && "text-gray-500 italic"
         )}>
-          {!initialData.chapters.length && "No hay capitulos añadido"}
+          {!initialData.chapters.length && "No hay capítulos añadidos"}
           <ChaptersList
             onEdit={onEdit}
             onReorder={onReorder}
@@ -150,8 +152,8 @@ export const ChaptersForm = ({
         </div>
       )}
       {!isCreating && (
-        <p className="text-xs text-muted-foreground mt-4">
-          Arrastra y suelta para reordenar los capitulos
+        <p className="text-xs text-gray-400 mt-4">
+          Arrastra y suelta para reordenar los capítulos
         </p>
       )}
     </div>

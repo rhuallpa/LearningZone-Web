@@ -23,8 +23,9 @@ export const columns: ColumnDef<Course>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
         >
-          Titulo
+          Título
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
@@ -37,6 +38,7 @@ export const columns: ColumnDef<Course>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
         >
           Precio
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -60,6 +62,7 @@ export const columns: ColumnDef<Course>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
         >
           Publicado
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -72,7 +75,7 @@ export const columns: ColumnDef<Course>[] = [
       return (
         <Badge className={cn(
           "bg-slate-500",
-          isPublished && "bg-sky-700"
+          isPublished && "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
         )}>
           {isPublished ? "Publicado" : "Borrador"}
         </Badge>
@@ -87,14 +90,14 @@ export const columns: ColumnDef<Course>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-4 w-8 p-0">
-              <span className="sr-only">Abrir menu</span>
+            <Button variant="ghost" className="h-4 w-8 p-0 text-white">
+              <span className="sr-only">Abrir menú</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link href={`/teacher/courses/${id}`}>
-              <DropdownMenuItem>
+              <DropdownMenuItem className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700">
                 <Pencil className="h-4 w-4 mr-2" />
                 Editar
               </DropdownMenuItem>

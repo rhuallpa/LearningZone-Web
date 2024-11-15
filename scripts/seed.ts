@@ -6,22 +6,22 @@ async function main() {
   try {
     await database.category.createMany({
       data: [
-        { name: "Administración de Redes y Comunicaciones" },
-        { name: "Modelado y Animación Digital" },
-        { name: "Diseño y Desarrollo de Simuladores y Videojuegos" },
-        { name: "Diseño y Desarrollo de Software" },
-        { name: "Big Data y Ciencia de Datos" },
-        { name: "Informacion de TD" },
-        { name: "Tutorias Personalizadas" },
-        
-
-      ]
+        { name: "Programación" },
+        { name: "Desarrollo de Aplicaciones Web" },
+        { name: "Desarrollo de Aplicaciones Móviles" },
+        { name: "Bases de Datos" },
+        { name: "Inteligencia Artificial y Machine Learning" },
+        { name: "Ciberseguridad" },
+        { name: "DevOps y Metodologías Ágiles" },
+        { name: "Desarrollo de Videojuegos" },
+        { name: "Software Testing y QA" },
+        { name: "Tutorías Personalizadas" }  // Nueva categoría agregada
+      ],
     });
 
-
-    console.log("Exito");
+    console.log("Éxito: categorías actualizadas en la base de datos");
   } catch (error) {
-    console.log("Error al inicializar las categorias de la base de datos", error);
+    console.log("Error al inicializar las categorías de la base de datos", error);
   } finally {
     await database.$disconnect();
   }

@@ -8,7 +8,6 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Chapter, MuxData } from "@prisma/client";
-import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
@@ -37,19 +36,19 @@ export const ChapterVideoForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Capitulo actualizado");
+      toast.success("Capítulo actualizado");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Algo salio mal");
+      toast.error("Algo salió mal");
     }
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
-        Video del Capitulo 
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-6 border bg-gray-900 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between text-gray-100">
+        Video del Capítulo 
+        <Button onClick={toggleEdit} variant="ghost" className="text-gray-100">
           {isEditing && (
             <>Cancelar</>
           )}
@@ -69,8 +68,8 @@ export const ChapterVideoForm = ({
       </div>
       {!isEditing && (
         !initialData.videoUrl ? (
-          <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
-            <Video className="h-10 w-10 text-slate-500" />
+          <div className="flex items-center justify-center h-60 bg-gray-800 rounded-md">
+            <Video className="h-10 w-10 text-gray-500" />
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
@@ -90,14 +89,14 @@ export const ChapterVideoForm = ({
               }
             }}
           />
-          <div className="text-xs text-muted-foreground mt-4">
-           Sube el video de este Capitulo
+          <div className="text-xs text-gray-400 mt-4">
+           Sube el video de este capítulo
           </div>
         </div>
       )}
       {initialData.videoUrl && !isEditing && (
-        <div className="text-xs text-muted-foreground mt-2">
-          El video puede tardar unos minutos en procesarse. Actualiza la pagina si el video no aparece.
+        <div className="text-xs text-gray-400 mt-2">
+          El video puede tardar unos minutos en procesarse. Actualiza la página si el video no aparece.
         </div>
       )}
     </div>
